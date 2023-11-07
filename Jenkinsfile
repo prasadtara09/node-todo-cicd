@@ -22,7 +22,7 @@ pipeline {
         }
             stage ('Kubernetes Deploy') {
                 kubernetesDeploy(
-                configs: 'MyAwesomeApp/springBootDeploy.yml',
+                configs: 'node-todo-cicd/Deployment.yaml',
                 kubeconfigId: 'K8S',
                 enableConfigSubstitution: true
                 )
