@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage("Clone Code"){
             steps{
-                git url: "https://github.com/LondheShubham153/node-todo-cicd.git", branch: "master"
+                git url: "https://github.com/prasadtara09/node-todo-cicd.git", branch: "master"
             }
         }
         stage("Build and Test"){
@@ -20,10 +20,15 @@ pipeline {
                 }
             }
         }
-        stage("Deploy"){
-            steps{
-                sh "docker-compose down && docker-compose up -d"
-            }
+            stage ('Kubernetes Deploy') {
+                kubernetesDeploy(
+                configs: 'MyAwesomeApp/springBootDeploy.yml',
+                kubeconfigId: 'K8S',
+                enableConfigSubstitution: true
+                )
         }
+           
     }
+    
 }
+    
