@@ -7,7 +7,6 @@ pipeline {
     stages{
         stage("Clone Code"){
             steps{
-                sh "sudo apt install git"
                 git url: "https://github.com/prasadtara09/node-todo-cicd.git", branch: "master"
             }
         }
