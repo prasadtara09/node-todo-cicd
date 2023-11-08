@@ -28,7 +28,7 @@ pipeline {
             stage ('EKS Deploy') {
                 steps{
                     // Deploy the application to EKS
-                    sh "kubectl apply -f your-deployment.yaml -n $KUBE_NAMESPACE"
+                    sh "kubectl apply -f Deployment.yaml -n $KUBE_NAMESPACE"
                 }
                 
         }
