@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    environment {
+        KUBE_NAMESPACE = 'app'
+    }
     stages{
         stage("Clone Code"){
             steps{
@@ -20,12 +24,12 @@ pipeline {
                 }
             }
         }
-            stage ('Kubernetes Deploy') {
-                kubernetesDeploy(
-                configs: 'node-todo-cicd/Deployment.yaml',
-                kubeconfigId: 'K8S',
-                enableConfigSubstitution: true
-                )
+            stage ('EKS Deploy') {
+                steps{
+                    // Deploy the application to EKS
+                    sh "kubectl apply -f your-deployment.yaml -n $KUBE_NAMESPACE"
+                }
+                
         }
            
     }
